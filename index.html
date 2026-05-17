@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gửi Bé Iu ❤️</title>
+    <style>
+        body {
+            background-color: #ffb6c1; /* Nền màu hồng */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.75);
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 8px 32px rgba(255, 105, 180, 0.3);
+            backdrop-filter: blur(4px);
+            max-width: 80%;
+        }
+
+        img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #ff69b4;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn {
+            margin-top: 25px;
+            padding: 15px 30px;
+            font-size: 20px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.5);
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            background-color: #ff1493;
+        }
+
+        /* Hiệu ứng trái tim bay */
+        .heart {
+            position: absolute;
+            color: #ff1493;
+            font-size: 24px;
+            animation: floatUp 4s linear infinite;
+            opacity: 0;
+            bottom: -10%;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0); opacity: 1; }
+            100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Đường link ảnh bé chó cute, bạn có thể đổi link ảnh khác nếu muốn -->
+        <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=500" alt="Cute Dog">
+        <br>
+        <button class="btn" id="mainBtn" onclick="changeText()">nhấn vào đây đi vợ oiiii</button>
+    </div>
+
+    <script>
+        let count = 0;
+        // Danh sách các câu chữ theo thứ tự nhấn
+        const messages = [
+            "ngày hôm nay em đã rất cố gắng òi 🥰",
+            "bé iu của anh ngủ ngon nhoo 😴❤️",
+            "anh vẫn luôn iu em mãi thuiii 💖"
+        ];
+
+        function changeText() {
+            const btn = document.getElementById('mainBtn');
+            if (count < messages.length) {
+                btn.innerText = messages[count];
+                count++;
+            } else {
+                // Sau lần 3 thì giữ nguyên câu cuối và làm nút to lên một chút
+                btn.innerText = messages[messages.length - 1];
+                btn.style.transform = "scale(1.15)";
+            }
+        }
+
+        // Tạo hiệu ứng tim bay tự động
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's'; // Tốc độ bay ngẫu nhiên
+            document.body.appendChild(heart);
+
+            setTimeout(() => { heart.remove(); }, 4000);
+        }
+        // Cứ mỗi 300ms tạo ra 1 trái tim
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
